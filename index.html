@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="lo">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10231d">
+  <meta name="description" content="ບົດທົບທວນ Arduino ພາສາລາວ: TMP36, DHT11, soil moisture, PIR, IR remote, HC-SR04 ແລະແບບທົດສອບ 50 ຂໍ້">
+  <title>Arduino ສອບໃຫ້ຜ່ານ — ບົດທົບທວນພາສາລາວ</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">ຂ້າມໄປເນື້ອຫາ</a>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="ໜ້າຫຼັກ">
+      <span class="brand-mark" aria-hidden="true">A</span>
+      <span>Arduino <strong>ສອບໃຫ້ຜ່ານ</strong></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">ເມນູ</button>
+    <nav id="nav" aria-label="ເມນູຫຼັກ">
+      <a href="#lessons">ບົດຮຽນ</a>
+      <a href="#compare">ຈຳໃຫ້ແມ່ນ</a>
+      <a href="#lab">Code Lab</a>
+      <a class="nav-quiz" href="#quiz">ເລີ່ມທົດສອບ</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">ບົດທົບທວນກ່ອນເສັງ · ຮຽນໄວ · ຈື່ງ່າຍ</p>
+        <h1>ເຂົ້າໃຈ sensor<br><span>ບໍ່ແມ່ນທ່ອງຈຳ code.</span></h1>
+        <p class="hero-lead">ຮຽນ Arduino ຈາກພື້ນຖານໄປຫາ TMP36, PIR, IR remote ແລະ HC-SR04. ມີ code ພ້ອມອະທິບາຍ, flashcards ແລະ 50 ຄຳຖາມພ້ອມສະເຫຼີຍ.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#lessons">ເລີ່ມຮຽນ 15 ນາທີ</a>
+          <button class="button secondary" type="button" data-start-exam>ລອງເສັງ 50 ຂໍ້</button>
+        </div>
+        <div class="progress-card" aria-live="polite">
+          <div><span>ຄວາມຄືບໜ້າ</span><strong id="progressText">0%</strong></div>
+          <div class="progress-track"><span id="progressBar"></span></div>
+          <small id="progressHint">ເລີ່ມຈາກບົດທີ 1 ໄດ້ເລີຍ</small>
+        </div>
+      </div>
+      <div class="hero-board" aria-label="ພາບຈຳລອງວົງຈອນ Arduino">
+        <div class="signal signal-one"></div><div class="signal signal-two"></div>
+        <div class="board-label">ARDUINO<br><strong>UNO</strong></div>
+        <div class="chip"><span></span><span></span><span></span><span></span></div>
+        <div class="pin-row top"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="pin-row bottom"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="usb"></div><div class="power"></div><div class="led led-a"></div><div class="led led-b"></div>
+        <span class="board-note note-a">INPUT</span><span class="board-note note-b">THINK → CODE → TEST</span>
+      </div>
+    </section>
+
+    <section class="quick-strip" aria-label="ສະຫຼຸບຫົວຂໍ້">
+      <span>7 ບົດສັ້ນ</span><span>6 code labs</span><span>50 ຄຳຖາມ</span><span>ບັນທຶກໃນເຄື່ອງອັດຕະໂນມັດ</span>
+    </section>
+
+    <section class="section" id="lessons">
+      <div class="section-heading">
+        <div><p class="eyebrow">01 · ຮຽນເປັນຂັ້ນ</p><h2>ເລືອກບົດຮຽນ</h2></div>
+        <p>ແຕ່ລະບົດໃຊ້ປະມານ 3–5 ນາທີ. ກົດ “ຮຽນແລ້ວ” ເພື່ອບັນທຶກຄວາມຄືບໜ້າ.</p>
+      </div>
+      <div class="lesson-tabs" role="tablist" aria-label="ບົດຮຽນ">
+        <button role="tab" aria-selected="true" data-lesson="basics">01 ພື້ນຖານ</button>
+        <button role="tab" aria-selected="false" data-lesson="tmp36">02 TMP36</button>
+        <button role="tab" aria-selected="false" data-lesson="sensors">03 ແຍກ sensor</button>
+        <button role="tab" aria-selected="false" data-lesson="pir">04 PIR</button>
+        <button role="tab" aria-selected="false" data-lesson="ir">05 IR Remote</button>
+        <button role="tab" aria-selected="false" data-lesson="ultrasonic">06 HC-SR04</button>
+        <button role="tab" aria-selected="false" data-lesson="serial">07 Serial</button>
+      </div>
+      <div id="lessonPanel" class="lesson-panel" tabindex="-1"></div>
+    </section>
+
+    <section class="section contrast" id="compare">
+      <div class="section-heading light">
+        <div><p class="eyebrow">02 · ຈຸດທີ່ມັກສັບສົນ</p><h2>TMP36 ≠ DHT11 ≠ Soil moisture</h2></div>
+        <p>ຄຳວ່າ “ຄວາມຊຸ່ມ” ອາດໝາຍເຖິງຄວາມຊຸ່ມອາກາດ ຫຼື ຄວາມຊຸ່ມດິນ. ແຕ່ TMP36 ວັດໄດ້ສະເພາະອຸນຫະພູມ.</p>
+      </div>
+      <div class="compare-grid">
+        <article><span class="sensor-icon temp">°C</span><h3>TMP36</h3><p>ວັດອຸນຫະພູມ</p><dl><div><dt>ສັນຍານ</dt><dd>Analog</dd></div><div><dt>Pin</dt><dd>A0</dd></div><div><dt>Library</dt><dd>ບໍ່ຕ້ອງ</dd></div></dl></article>
+        <article><span class="sensor-icon humid">%RH</span><h3>DHT11</h3><p>ວັດອຸນຫະພູມ + ຄວາມຊຸ່ມອາກາດ</p><dl><div><dt>ສັນຍານ</dt><dd>Digital</dd></div><div><dt>Pin</dt><dd>Digital</dd></div><div><dt>Library</dt><dd>ແນະນຳ</dd></div></dl></article>
+        <article><span class="sensor-icon soil">SOIL</span><h3>Soil moisture</h3><p>ວັດຄວາມຊຸ່ມໃນດິນ</p><dl><div><dt>ສັນຍານ</dt><dd>Analog/Digital</dd></div><div><dt>Pin</dt><dd>A0 ຫຼື D</dd></div><div><dt>Library</dt><dd>ບໍ່ຕ້ອງ</dd></div></dl></article>
+      </div>
+      <div class="memory-rule"><strong>ສູດຈຳ:</strong> TMP = Temperature · DHT = air Humidity · SOIL = ດິນ</div>
+    </section>
+
+    <section class="section" id="lab">
+      <div class="section-heading">
+        <div><p class="eyebrow">03 · CODE LAB</p><h2>6 ໂປຣແກຣມທີ່ຄວນຂຽນໄດ້</h2></div>
+        <p>ເລືອກຕົວຢ່າງ, ອ່ານຄຳອະທິບາຍ ແລະກົດ copy ໄປລອງໃນ Tinkercad ຫຼື Arduino IDE.</p>
+      </div>
+      <div class="code-workspace">
+        <div class="code-menu" id="codeMenu"></div>
+        <div class="code-card">
+          <div class="code-top"><div><span id="codeBadge">BASIC</span><h3 id="codeTitle">Blink LED</h3></div><button type="button" id="copyCode">ຄັດລອກ code</button></div>
+          <p id="codeNote"></p>
+          <pre><code id="codeBlock"></code></pre>
+          <div class="code-explain" id="codeExplain"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section flash-section" id="flashcards">
+      <div class="section-heading">
+        <div><p class="eyebrow">04 · ACTIVE RECALL</p><h2>ຈື່ໃຫ້ໄດ້ໃນ 60 ວິນາທີ</h2></div>
+        <p>ຄິດຄຳຕອບກ່ອນ ແລ້ວຈຶ່ງກົດເປີດ. ວິທີນີ້ຊ່ວຍຈື່ໄດ້ດີກວ່າອ່ານຊ້ຳ.</p>
+      </div>
+      <div class="flash-wrap">
+        <button class="flash-nav" id="flashPrev" type="button" aria-label="ບັດກ່ອນໜ້າ">←</button>
+        <button class="flashcard" id="flashcard" type="button" aria-live="polite"><span id="flashLabel">ຄຳຖາມ 1/10</span><strong id="flashText"></strong><small>ແຕະເພື່ອເປີດຄຳຕອບ</small></button>
+        <button class="flash-nav" id="flashNext" type="button" aria-label="ບັດຖັດໄປ">→</button>
+      </div>
+    </section>
+
+    <section class="section quiz-section" id="quiz">
+      <div class="quiz-intro" id="quizIntro">
+        <p class="eyebrow">05 · ທົດສອບຕົນເອງ</p>
+        <h2>ພ້ອມລອງເສັງບໍ?</h2>
+        <p>ເລືອກຝຶກ 10 ຂໍ້ແບບສຸ່ມ ຫຼືລອງເສັງຄົບ 50 ຂໍ້. ຫຼັງຕອບຈະມີຄຳອະທິບາຍ ແລະຄະແນນຈະຖືກບັນທຶກ.</p>
+        <div class="mode-grid">
+          <button type="button" data-start-practice><span>ຝຶກໄວ</span><strong>10 ຂໍ້ສຸ່ມ</strong><small>ເບິ່ງສະເຫຼີຍທັນທີ</small></button>
+          <button type="button" data-start-exam><span>ຈຳລອງເສັງ</span><strong>50 ຂໍ້</strong><small>ສະຫຼຸບຜົນຕອນຈົບ</small></button>
+        </div>
+        <div class="best-score"><span>ຄະແນນດີສຸດ</span><strong id="bestScore">—</strong></div>
+      </div>
+      <div class="quiz-app" id="quizApp" hidden>
+        <div class="quiz-header"><div><span id="quizMode">ຝຶກໄວ</span><strong id="quizCount">ຂໍ້ 1/10</strong></div><button type="button" id="quitQuiz">ອອກ</button></div>
+        <div class="quiz-progress"><span id="quizProgress"></span></div>
+        <article class="question-card">
+          <span class="question-topic" id="questionTopic"></span>
+          <h3 id="questionText"></h3>
+          <div class="answers" id="answers"></div>
+          <div class="feedback" id="feedback" hidden></div>
+          <div class="quiz-actions"><button class="button primary" type="button" id="nextQuestion" disabled>ກວດຄຳຕອບ</button></div>
+        </article>
+      </div>
+      <div class="results" id="results" hidden></div>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>Arduino ສອບໃຫ້ຜ່ານ</strong><p>ສ້າງເພື່ອທົບທວນບົດຮຽນໃຫ້ເຂົ້າໃຈ ແລະກ້າລອງຂຽນ code.</p></div>
+    <div class="footer-links"><a href="https://docs.arduino.cc/" target="_blank" rel="noreferrer">Arduino Docs</a><a href="https://github.com/Arduino-IRremote/Arduino-IRremote" target="_blank" rel="noreferrer">IRremote v4</a><button id="resetProgress" type="button">ລ້າງຄວາມຄືບໜ້າ</button></div>
+  </footer>
+</body>
+</html>
